@@ -41,13 +41,21 @@ $(document).ready(function() {
     ]
     console.log(timeblockList);
 
-    //// I'll need to reference the html where to put the timeslots eventually
+    //// I'll need to reference the html where to put the timeslots eventually.
     var timeblockContainer = $(".container");
 
     //// Go through each timeblock and add their row & 3 columns
     for ( i = 0; i < timeblockList.length; i++) {
-        var timeblockRow = $("<div>").addClass("row").text("Yo yo");
+        var timeblockRow = $("<div>").addClass("row");
         timeblockContainer.append(timeblockRow);
-    }
 
+        var timeCol = $("<div>").addClass("col-sm-1").text("Hey Hey");
+        timeblockRow.append(timeCol);
+
+        var textCol = $("<textarea>").addClass("col-sm-10").text("Sup sup");
+        timeblockRow.append(textCol);
+
+        var btnCol = $("<button>").addClass("col-sm-1");
+        timeblockRow.append(btnCol);
+    }
 })
