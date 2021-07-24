@@ -12,3 +12,18 @@
 
 // Notes:
 //// I don't need to worry about deleting each note saved
+
+
+// Start the document function
+$(document).ready(function() {
+
+    // First: Timestamp work
+    //// I need to bring in the section from the html where I want to put the date stamp from Moment
+    var presentDay = $("#currentDay");
+
+    //// Here's the documentation from moment: https://momentjs.com/docs/#/displaying/
+    var presentData = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
+    presentDay.text("The current day, date, and time is: " + presentData);
+
+
+})
