@@ -25,5 +25,29 @@ $(document).ready(function() {
     var presentData = moment().format("dddd, MMMM Do YYYY, h:mm:ss a");
     presentDay.text("The current day, date, and time is: " + presentData);
 
+    // Second: Make the 9-5 nine timeblocks display
+    //// Here are all the timeblocks I will need
+
+    var timeblockList = [
+        {hour: "9:00 AM"},
+        {hour: "10:00 AM"},
+        {hour: "11:00 AM"},
+        {hour: "12:00 PM"},
+        {hour: "1:00 PM"},
+        {hour: "2:00 PM"},
+        {hour: "3:00 PM"},
+        {hour: "4:00 PM"},
+        {hour: "5:00 PM"},
+    ]
+    console.log(timeblockList);
+
+    //// I'll need to reference the html where to put the timeslots eventually
+    var timeblockContainer = $(".container");
+
+    //// Go through each timeblock and add their row & 3 columns
+    for ( i = 0; i < timeblockList.length; i++) {
+        var timeblockRow = $("<div>").addClass("row").text("Yo yo");
+        timeblockContainer.append(timeblockRow);
+    }
 
 })
