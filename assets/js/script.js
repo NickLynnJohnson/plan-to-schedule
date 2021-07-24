@@ -29,33 +29,77 @@ $(document).ready(function() {
     //// Here are all the timeblocks I will need
 
     var timeblockList = [
-        {hour: "9:00 AM"},
-        {hour: "10:00 AM"},
-        {hour: "11:00 AM"},
-        {hour: "12:00 PM"},
-        {hour: "1:00 PM"},
-        {hour: "2:00 PM"},
-        {hour: "3:00 PM"},
-        {hour: "4:00 PM"},
-        {hour: "5:00 PM"},
+        {
+            hour: "9:00 AM",
+            displayID: 9
+        },
+        {   
+            hour: "10:00 AM",
+            displayID: 10
+        },
+        {
+            hour: "11:00 AM",
+            displayID: 11
+        },
+        {
+            hour: "12:00 PM",
+            displayID: 12
+        },
+        {
+            hour: "1:00 PM",
+            displayID: 13
+        },
+        {
+            hour: "2:00 PM",
+            displayID: 14
+        },
+        {
+            hour: "3:00 PM",
+            displayID: 15
+        },
+        {
+            hour: "4:00 PM",
+            displayID: 16
+        },
+        {
+            hour: "5:00 PM",
+            displayID: 17
+        },
     ]
     console.log(timeblockList);
 
-    //// I'll need to reference the html where to put the timeslots eventually.
+    //// I'll need to reference the html where to put the timeslots eventually. I'll need to reference the current moment hour to make the row col stylish. 
     var timeblockContainer = $(".container");
+    var presentHour = moment().format("H");
 
     //// Go through each timeblock and add their row & 3 columns
     for ( i = 0; i < timeblockList.length; i++) {
         var timeblockRow = $("<div>").addClass("row");
         timeblockContainer.append(timeblockRow);
 
-        var timeCol = $("<div>").addClass("col-sm-1").text("Hey Hey");
+        var timeCol = $("<div>").addClass("col-sm-1").text(timeblockList[i].hour);
         timeblockRow.append(timeCol);
 
-        var textCol = $("<textarea>").addClass("col-sm-10").text("Sup sup");
+        var textCol = $("<textarea>").addClass("col-sm-10").addClass(timeblockList[i].displayID).text("Sup sup");
         timeblockRow.append(textCol);
 
         var btnCol = $("<button>").addClass("col-sm-1");
         timeblockRow.append(btnCol);
-    }
+
+        //// Check the timeblock ids just generated and compare to moment hour. Put past, present, future rules in place for how the css background colors should display.
+
+        if (timeblockList[i].displayID < presentHour) {
+            textCol.addClass("past");
+            textCol.removeClass("present");
+            textCol.removeClass("future");
+        } else if (timeblockList[i].displayID > presentHour) {
+            textCol.addClass("future");
+            textCol.removeClass("past");
+            textCol.removeClass("present");
+        } else {
+            textCol.addClass("present");
+            textCol.removeClass("past");
+            textCol.removeClass("future"); 
+        }  
+    }  
 })
