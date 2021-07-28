@@ -13,7 +13,7 @@ This is a simple calendar application that enables the user to save events for e
 
 ## App Demo
 
-<!-- Include Heroku App Link Here -->
+Check it out on Github Pages: https://nicklynnjohnson.github.io/plan-to-schedule/
 
 ## Technologies Used
 
