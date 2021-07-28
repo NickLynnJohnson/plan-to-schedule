@@ -9,10 +9,8 @@
 ////// Special note about the text area: it needs to change color based on past, present, future related to the current Moment timestamp
 ////// Then the toughie: user will enter text into the text area for each row, and this information needs to save and be present for each refresh
 
-
 // Notes:
 //// I don't need to worry about deleting each note saved
-
 
 // Start the document function
 $(document).ready(function() {
@@ -74,30 +72,35 @@ $(document).ready(function() {
 
     //// Go through each timeblock and add their row & 3 columns
     for ( i = 0; i < timeblockList.length; i++) {
+
+        // It seems that my timeblock array loses scope once I'm in the for loop so I need to define it here again to use down below. Also I have to use a const here.
+        const timeID = timeblockList[i].displayID;
+
+        // The row
         var timeblockRow = $("<div>").addClass("row");
         timeblockContainer.append(timeblockRow);
 
+        // The timeblock's hour column
         var timeCol = $("<div>").addClass("col-sm-1 hour").text(timeblockList[i].hour);
         timeblockRow.append(timeCol);
 
-        var textCol = $("<textarea>").addClass("col-sm-10 description").attr("id", timeblockList[i].displayID).text("Sup sup");
+        // The column for text entry
+        //// Also have it check if there is anything in localstorage, if so, text it to the display (see localStorage.setitem work below)
+        var textCol = $("<textarea>").addClass("col-sm-10 description").attr("id", timeblockList[i].displayID).text(localStorage.getItem("#" + timeID));
         timeblockRow.append(textCol);
 
-        const timeID = timeblockList[i].displayID;
+        // The last column for the submit button
+        //// Add the onclick function to each button
         var btnCol = $("<button>").addClass("col-sm-1 fas fa-save saveBtn").on("click", function(event) {
             event.preventDefault();
-            var userInput = $("#" + timeID).val();
-    
-            console.log(userInput);
-  
-            // localStorage.setItem()
-            // .attr("id", "button:" + timeblockList[i].displayID).
-        });
 
+            //// Collect the value and then also put that value into localstorage
+            var timeblockInput = $("#" + timeID).val();
+            localStorage.setItem("#" + timeID, timeblockInput);
+        });
         timeblockRow.append(btnCol);
 
         //// Check the timeblock ids just generated and compare to moment hour. Put past, present, future rules in place for how the css background colors should display.
-
         if (timeblockList[i].displayID < presentHour) {
             textCol.addClass("past");
             textCol.removeClass("present");
@@ -111,32 +114,5 @@ $(document).ready(function() {
             textCol.removeClass("past");
             textCol.removeClass("future"); 
         }  
-
-
-
-        // const idSuffix = timeblockList[i].displayID;
-        // const buttonId = "button:" + idSuffix;
-        // const textAreaId = "textArea:" + idSuffix;
-
-        // $("#" + "button:" + timeblockList[i].displayID).on("click", function(event) {
-        //     event.preventDefault();
-        //     var userInput = timeblockList[i].displayID;
-    
-        //     console.log(userInput);
-    
-    
-        //     // localStorage.setItem()
-        // })
     } 
-    
-    // Third, make the button/textarea work
-    // $(".saveBtn").on("click", function(event) {
-    //     event.preventDefault();
-    //     var userInput = this.id;
-
-    //     console.log(userInput);
-
-
-        // localStorage.setItem()
-    // })
 })
