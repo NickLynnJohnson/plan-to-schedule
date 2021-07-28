@@ -77,13 +77,23 @@ $(document).ready(function() {
         var timeblockRow = $("<div>").addClass("row");
         timeblockContainer.append(timeblockRow);
 
-        var timeCol = $("<div>").addClass("col-sm-1").text(timeblockList[i].hour);
+        var timeCol = $("<div>").addClass("col-sm-1 hour").text(timeblockList[i].hour);
         timeblockRow.append(timeCol);
 
-        var textCol = $("<textarea>").addClass("col-sm-10").addClass(timeblockList[i].displayID).text("Sup sup");
+        var textCol = $("<textarea>").addClass("col-sm-10 description").attr("id", timeblockList[i].displayID).text("Sup sup");
         timeblockRow.append(textCol);
 
-        var btnCol = $("<button>").addClass("col-sm-1");
+        const timeID = timeblockList[i].displayID;
+        var btnCol = $("<button>").addClass("col-sm-1 fas fa-save saveBtn").on("click", function(event) {
+            event.preventDefault();
+            var userInput = $("#" + timeID).val();
+    
+            console.log(userInput);
+  
+            // localStorage.setItem()
+            // .attr("id", "button:" + timeblockList[i].displayID).
+        });
+
         timeblockRow.append(btnCol);
 
         //// Check the timeblock ids just generated and compare to moment hour. Put past, present, future rules in place for how the css background colors should display.
@@ -101,5 +111,32 @@ $(document).ready(function() {
             textCol.removeClass("past");
             textCol.removeClass("future"); 
         }  
-    }  
+
+
+
+        // const idSuffix = timeblockList[i].displayID;
+        // const buttonId = "button:" + idSuffix;
+        // const textAreaId = "textArea:" + idSuffix;
+
+        // $("#" + "button:" + timeblockList[i].displayID).on("click", function(event) {
+        //     event.preventDefault();
+        //     var userInput = timeblockList[i].displayID;
+    
+        //     console.log(userInput);
+    
+    
+        //     // localStorage.setItem()
+        // })
+    } 
+    
+    // Third, make the button/textarea work
+    // $(".saveBtn").on("click", function(event) {
+    //     event.preventDefault();
+    //     var userInput = this.id;
+
+    //     console.log(userInput);
+
+
+        // localStorage.setItem()
+    // })
 })
