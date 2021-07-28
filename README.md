@@ -1,6 +1,6 @@
 # plan-to-schedule
 
-<!-- ![Employee-Tracker](./assets/employee-tracker.gif?raw=true "Employee Tracker") -->
+![Plan-to-schedule-demo](/assets/images/plan-to-schedule-demo.gif?raw=true "Plan-to-schedule-demo")
 
 ## Description
 
@@ -8,11 +8,8 @@ This is a simple calendar application that enables the user to save events for e
 
 ## Installation
 
-<!-- 1. Clone the repository from github: "Include Repo Link Here". -->
-2. Install the node packages: "npm install"
-3. Enter "node server.js"
-4. Go to localhost
-5. Use the application on localhost
+1. Clone the repository from github: https://github.com/NickLynnJohnson/plan-to-schedule.
+2. Run in default browser, use Github Pages, etc.
 
 ## App Demo
 
@@ -20,10 +17,10 @@ This is a simple calendar application that enables the user to save events for e
 
 ## Technologies Used
 
-* MySQL
-* Node
-* Express
-* Handlebars
+* HTML, CSS, JS
+* Boostrap and Font Awesome
+* jQuery
+* Moment.js
 
 ## Author/Programmer
 
